@@ -71,14 +71,12 @@ var Welcome = function(controller) {
 		var cenView = new BView('center', {x:'0px',y:'20%',width:'100%',height:'70%'});
 		cenView.setCSSElement('backgroundColor', 'transparent'); 
 		cenView.setCSSElement('fontColor', '#2980b9');
-		
-		var titleLabel = new BLabel('centerTitle', {x:'5%',y:'5%',width:'80%',height:'30%'});
-		titleLabel.setCSSElement('backgroundColor', 'transparent');
-		titleLabel.setCSSElement('fontSize', '3vh');
-		titleLabel.setCSSElement('fontColor', '#2c3e50');
-		titleLabel.setCSSElement('position', 'relative');
-		titleLabel.setText('Parts of your idea.');
-		cenView.addSubview(titleLabel.renderView());
+	
+		var topImage = new BImageView('topImage', {x:'10%',y:'5%',width:'80%',height:'auto'})
+		topImage.setImage('http://www.gamearch.com/wp-content/uploads//2013/07/header.png');
+		topImage.setCSSElement('position', 'relative');
+
+		cenView.addSubview(topImage.renderView());
 
 		return cenView.renderView();
 	}
@@ -89,15 +87,15 @@ var Welcome = function(controller) {
 		footerView.setCSSElement('fontColor', 'green');
 		footerView.setCSSElement('backgroundColor', '#2c3e50');
 		
-		var footeLabel = new BLabel('footerTitle', {x:'5%',y:'40%',width:'80%',height:'70%'});
-		footeLabel.setCSSElement('backgroundColor', 'transparent');
-		footeLabel.setCSSElement('fontSize', '2vh');
-		footeLabel.setCSSElement('fontColor', '#ecf0f1');
+		var footerLabel = new BLabel('footerTitle', {x:'5%',y:'40%',width:'80%',height:'70%'});
+		footerLabel.setCSSElement('backgroundColor', 'transparent');
+		footerLabel.setCSSElement('fontSize', '2vh');
+		footerLabel.setCSSElement('fontColor', '#ecf0f1');
 
-		footeLabel.setCSSElement('position', 'relative');
-		footeLabel.setText('2015 CocoEcco, Open Source Brainstorm Tool, Javascript OO');
+		footerLabel.setCSSElement('position', 'relative');
+		footerLabel.setText('2015 CocoEcco, Open Source Brainstorm Tool, Javascript OO');
 
-		footerView.addSubview(footeLabel.renderView());
+		footerView.addSubview(footerLabel.renderView());
 
 
 		return footerView.renderView();
