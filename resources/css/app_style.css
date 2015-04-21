@@ -1,0 +1,35 @@
+html,body {
+    width: 100%;
+    height: 100%;
+    background-color: #ecf0f1;
+}
+
+head, title, link, meta, style, script {
+  display: none;
+}
+
+
+/* HTML 5, older browser recommendation */
+
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
+}
+
+#appContainer {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	margin: 0;
+	width: 100%;
+	width: 100%;
+}
+
+/* Components */
+
+.bview {
+    
+}
+
+.default {
+	
+}
