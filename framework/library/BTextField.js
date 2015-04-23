@@ -1,13 +1,17 @@
-var BButton = function(id,rect) {
-	
-	this.type = 'bbutton'
+var BTextField = function(id, rect) {
+	this.type = 'btextfield'
 	this.id = id,
 	this.css = baseCSS(),
-	this.title = "button";
-	this.handler = null;
+	this.placeholder = "";
+	this.textChanged = null;
+	this.tag = 0;
 
-	this.setTitle = function(text) {
-		this.title = text;
+	this.setPlaceholderText = function(placeholder) {
+		this.placeholder = placeholder;
+	}
+
+	this.setTextChanged = function(callBack) {
+		this.textChanged = callBack;
 	}
 
 	function baseCSS() {
@@ -18,33 +22,31 @@ var BButton = function(id,rect) {
 			backgroundColor : '#000',
 			position: 'fixed',
 			fontSize: '12px',
-			fontColor: '#000',
-			cursor : 'pointer',
-			visibility: "visible",
-			display: "block"
+			fontColor: '#000'
 		};
 		return css;
 	}
-
-	this.setHandler = function(callBack) {
-		this.handler = callBack;
-	}
-
 
 	this.setCSSElement = function(key,value) {
 		this.css[key] = value;
 	}
 
-	function init() {
-		console.log('BButton object created')
+	this.setTag = function(tag) {
+		this.tag = tag;
 	}
+
+	function init() {
+		console.log('BTextField object created')
+	}
+
 
 	this.renderView = function() {
 		var view = "";
 		view += injectCSS(this.css, this.id);
-		view += injectHTML(this.id, this.type, this.title, this.handler);
+		view += injectHTML(this.id, this.type, this.placeholder, this.textChanged);
 		return view;
 	}
+
 
 	function init() {
 		console.log('BView object created');
@@ -71,27 +73,23 @@ var BButton = function(id,rect) {
 		cssTags += cssKeyValue('height', cssObj.rect.height);
 
 		cssTags += cssKeyValue('font-size', cssObj.fontSize);
-		cssTags += cssKeyValue('color', cssObj.textColor);
-		cssTags += cssKeyValue('text-align', cssObj.textAlign);
+		cssTags += cssKeyValue('color', cssObj.fontColor);
+
 		cssTags += cssKeyValue('line-height', cssObj.lineHeight);
-		
-		cssTags += cssKeyValue('cursor', cssObj.cursor);
-		cssTags += cssKeyValue('visibility', cssObj.visibility);
-		cssTags += cssKeyValue('display', cssObj.display);
 
 		return "<style>#" + objId + '{' + cssTags + '}</style>';
 	}
 
-	function injectHTML(objId, objType, title, handler) {
+	function injectHTML(objId, objType, placeholder, changed) {
 		//inject divs into the target
+		//"<a href='#' onclick='return " + handler + "();'>
 
-		var html = "<a id= '" + objId + "' href='#' onclick='return " + handler + "(this);'><div id='" + objId + "Div'"+ " class=" + "'" + objType + "'>";
-		html += title;
-		html += "</div></a>";
+		var html = "<input type='text' id='" + objId + "'" + " class=" + "'" + objType + "' placeholder='" +  placeholder + "' onkeydown='return " + changed + "(this);'>";
+		html += "";
+		html += "</input>";
 		return html;
 	}
 
 	init();
-
-
 }
+//BLabel.prototype = new BView();

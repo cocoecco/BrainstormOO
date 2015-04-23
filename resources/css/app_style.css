@@ -22,6 +22,7 @@ header, section, footer, aside, nav, main, article, figure {
 	margin: 0;
 	width: 100%;
 	width: 100%;
+	font-family: "Goudy Bookletter 1911", sans-serif;
 }
 
 /* Components */
@@ -33,3 +34,20 @@ header, section, footer, aside, nav, main, article, figure {
 .default {
 	
 }
+
+a {
+	text-decoration: none;
+}
+
+.btextfield {
+  padding: 10px;
+  border: solid 1px #fff;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  transition: box-shadow 0.3s;
+}
+
+
+
+
+
+

@@ -11,14 +11,23 @@ viewName = "";
 var Pages = function() {
 
 
-
-
 	function startWithNewSession(sharedSession, initSharedDB, renderView) {
 		//TODO: 
 		//sharedSession.startNewSession();
 		//initSharedDB.setNewSharedDB();
 		var welcome = new Welcome();
 		renderView(welcome.welcomeViewPage());
+	}
+
+	this.presentNextView = function(exitingViewObj, incomingViewName, initSharedDB, renderView) {
+		if (incomingViewName == "OtherWords") {
+			var otherWords = new OtherWords();
+			renderView(otherWords.otherWordsPage());
+		}
+		else if (incomingViewName == "TypeWords") {
+			var typeWords = new TypeWords();
+			renderView(typeWords.typeWordsPage());
+		}
 	}
 
 	this.presentViewWithClassName = function(initViewName, sharedSession, initSharedDB, renderView) {

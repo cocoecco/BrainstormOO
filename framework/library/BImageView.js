@@ -13,11 +13,12 @@ var BImageView = function(id, rect) {
 			rect : rect,
 			cornerRadius : '0px',
 			zIndex : 0,
-			backgroundColor : '#000',
+			backgroundColor : 'transparent',
 			position: 'fixed',
 			fontSize: '12px',
 			fontColor: '#000',
-			image: ''
+			image: '',
+			visibility: "visible"
 		};
 		return css;
 	}
@@ -30,12 +31,10 @@ var BImageView = function(id, rect) {
 		console.log('BLabel object created')
 	}
 
-
 	this.renderView = function() {
 		var view = "";
 		view += injectCSS(this.css, this.id);
 		view += injectHTML(this.id, this.type, this.css['image']);
-		console.log(this.css);
 		return view;
 	}
 
@@ -66,6 +65,7 @@ var BImageView = function(id, rect) {
 
 		cssTags += cssKeyValue('font-size', cssObj.fontSize);
 		cssTags += cssKeyValue('color', cssObj.fontColor);
+		cssTags += cssKeyValue('visibility', cssObj.visibility);
 
 		return "<style>#" + objId + '{' + cssTags + '}</style>';
 	}

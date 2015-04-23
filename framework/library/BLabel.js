@@ -65,6 +65,8 @@ var BLabel = function(id, rect) {
 		cssTags += cssKeyValue('font-size', cssObj.fontSize);
 		cssTags += cssKeyValue('color', cssObj.fontColor);
 
+		cssTags += cssKeyValue('line-height', cssObj.lineHeight);
+
 		return "<style>#" + objId + '{' + cssTags + '}</style>';
 	}
 
