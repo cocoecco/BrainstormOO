@@ -116,9 +116,10 @@ var TypeWords = function(controller) {
 		cenView.setCSSElement('backgroundColor', 'transparent'); 
 		cenView.setCSSElement('fontColor', '#2980b9');
 
-		var typeingView = new BView('typingView', {x:'100%',y:'80%',width:'100%',height:'15%'});
+		var typeingView = new BView('typingView', {x:'100%',y:'85%',width:'100%',height:'15%'});
 		typeingView.setCSSElement('fontSize', '20px');
 		typeingView.setCSSElement('fontColor', 'green');
+		typeingView.setCSSElement('position', 'absolute'); 
 		typeingView.setCSSElement('backgroundColor', '#2c3e50');
 		cenView.addSubview(typeingView.renderView());
 

@@ -66,6 +66,10 @@ function appInit() {
 	BOO.appDelegate = new AppDelegate(BOO);
 	BOO.animator = animator;
 	loadView('Welcome');
+
+	BOO.getNewAnimator = function() {
+		return new Animator();
+	}
 }
 
 window.onload = function() {

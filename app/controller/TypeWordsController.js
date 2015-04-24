@@ -15,20 +15,39 @@ var TypeWordsController = function(model) {
 		alert("about clicked TypeWords");
 	}
 	
+	function animationEnded() {
+		console.log("Animation Ended");
+		var typingViewAnimation = {
+			bview: 'typingView',
+			type: 'move',
+			duration: 0.4,
+			delay: 0.0,
+			newRect : {x: '0%', y: '25%', width: '100%', height: '15%'}
+		};
+				var animator = BOO.getNewAnimator();
+
+		animator.addAnimation(typingViewAnimation);
+
+
+		setTimeout(function() {
+			animator.startAnimationStack(null);
+		},20);
+	}
 
 	function addAnimations() {
 		var typingViewAnimation = {
 			bview: 'typingView',
 			type: 'move',
-			duration: 3.0,
+			duration: 0.4,
 			delay: 0.0,
-			newRect : {x: '0', y: '80%', width: '100%', height: '15%'}
+			newRect : {x: '0%', y: '85%', width: '100%', height: '15%'}
 		};
-		BOO.animator.addAnimation(typingViewAnimation);
+		var animator = BOO.getNewAnimator();
+		animator.addAnimation(typingViewAnimation);
 
 
 		setTimeout(function() {
-			BOO.animator.startAnimationStack();
+			animator.startAnimationStack(animationEnded);
 		},20);
 	}
 
