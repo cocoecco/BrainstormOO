@@ -65,10 +65,15 @@ function appInit() {
 	BOO.sharedDB = sharedDB;
 	BOO.appDelegate = new AppDelegate(BOO);
 	BOO.animator = animator;
+	BOO.tools = new Tools();
 	loadView('Welcome');
 
 	BOO.getNewAnimator = function() {
 		return new Animator();
+	}
+
+	BOO.getElement = function(id) {
+		return document.getElementById(id);
 	}
 }
 

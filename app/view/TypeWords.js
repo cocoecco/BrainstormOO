@@ -33,9 +33,11 @@ var TypeWords = function(controller) {
 
 		//Just to make things more readable
 		var ac = this.controller.aboutClicked;
+		var tc = this.controller.textChanged;
+		var nc = this.controller.nextClicked;
 
 		this.toolbarView = createToolbar(ac); //Pass function when clicking on about
-		this.centerView = createCenterSection();
+		this.centerView = createCenterSection(tc,nc);
 		this.footerView = createFooter();
 
 		this.view.addSubview(this.toolbarView);
@@ -111,16 +113,55 @@ var TypeWords = function(controller) {
 		return footerView.renderView();
 	}
 
-	function createCenterSection() {
+	function createCenterSection(textChanged, nextClicked) {
 		var cenView = new BView('center', {x:'0px',y:'20%',width:'100%',height:'70%'});
 		cenView.setCSSElement('backgroundColor', 'transparent'); 
 		cenView.setCSSElement('fontColor', '#2980b9');
+
+		var wordsLabel = new BLabel('wordsLabel', {x:'10%',y:'10%',width:'80%',height:'60%'});
+		wordsLabel.setCSSElement('backgroundColor', 'transparent');
+		wordsLabel.setCSSElement('fontSize', '4vh');
+		wordsLabel.setCSSElement('fontColor', '#2c3e50');
+		wordsLabel.setCSSElement('position', 'relative');
+		wordsLabel.setText('');
+		cenView.addSubview(wordsLabel.renderView());
 
 		var typeingView = new BView('typingView', {x:'100%',y:'85%',width:'100%',height:'15%'});
 		typeingView.setCSSElement('fontSize', '20px');
 		typeingView.setCSSElement('fontColor', 'green');
 		typeingView.setCSSElement('position', 'absolute'); 
 		typeingView.setCSSElement('backgroundColor', '#2c3e50');
+
+		var typeLabel = new BLabel('typeLabel', {x:'5%',y:'50%',width:'40%',height:'4vh%'});
+		typeLabel.setCSSElement('backgroundColor', 'transparent');
+		typeLabel.setCSSElement('fontSize', '4vh');
+		typeLabel.setCSSElement('fontColor', '#ecf0f1');
+		typeLabel.setCSSElement('position', 'relative');
+		typeLabel.setText('Type Words about your idea (1/' + BOO.sharedDB.getWordsCount() + ')');
+		typeingView.addSubview(typeLabel.renderView());
+
+		var inputTextField = new BTextField('inpTextField', {x:'38%',y:'0%',width:'15%',height:'20px'});
+		inputTextField.setCSSElement('backgroundColor', '#fff');
+		inputTextField.setCSSElement('fontSize', '16px');
+		inputTextField.setCSSElement('fontColor', '#7f8c8d');
+		inputTextField.setCSSElement('lineHeight', '10px');
+		inputTextField.setCSSElement('position', 'relative');
+		inputTextField.setTextChanged(textChanged);
+		inputTextField.setPlaceholderText("Word");
+		typeingView.addSubview(inputTextField.renderView());
+
+		var nextBtn = new BButton('nextBtn',{x:'60%',y:'40%',width:'7vw',height:'5vh'})
+		nextBtn.setCSSElement('backgroundColor', '#ecf0f1');
+		nextBtn.setCSSElement('position', 'absolute');
+		nextBtn.setCSSElement('cornerRadius', '4px');
+		nextBtn.setCSSElement('textAlign', 'center');
+		nextBtn.setCSSElement('lineHeight', '4.5vh');
+		nextBtn.setCSSElement('fontSize', '2.5vh');
+		nextBtn.setCSSElement('textColor', '#34495e');
+		nextBtn.setTitle('Next');
+		nextBtn.setHandler(nextClicked);
+		typeingView.addSubview(nextBtn.renderView());
+
 		cenView.addSubview(typeingView.renderView());
 
 		return cenView.renderView();
